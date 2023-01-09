@@ -9,6 +9,7 @@ AncetaStud::AncetaStud() //Конструктор без параметров
     reiting = 0;
     type = typchik::DVO;
     uch.dvo = *(new dvoechnik);
+    kolstud = kolstud + 1;
 
     //this->nomerGrup=0;
 };
@@ -21,6 +22,7 @@ AncetaStud::AncetaStud(typchik t) //Конструктор с одним параметром
     reiting = 0;
     type = t;
     uch.dvo = *(new dvoechnik);
+    kolstud = kolstud + 1;
 
 };
 
@@ -32,8 +34,14 @@ AncetaStud::AncetaStud(char f[N], int nomerG, int nomerS, int r, typchik t) //Ко
     reiting = r;
     type = t;
     uch.dvo = *(new dvoechnik);
+    kolstud = kolstud + 1;
 
 };
+
+AncetaStud::~AncetaStud() //Деструктор для уменьшения значения статического поля kolstud
+{
+    kolstud = kolstud - 1;
+}
 
 void AncetaStud::setfio(char fio[N]) //Установка значений переменной fio
 {

@@ -62,6 +62,7 @@ public:
     AncetaStud(); //Конструктор без параметров
     AncetaStud(typchik type); //Конструктор с одним параметром
     AncetaStud(char fio[N], int nomerGrup, int nomerStud, int reiting, typchik type); //Конструктор со всеми параметрами
+    ~AncetaStud(); //Деструктор для уменьшения значения статического поля kolstud
 
     void setfio(char fio[N]); //Установка значений переменной fio
     void setnomerGrup(int nomerGrup); //Установка значений переменной nomerGrup
