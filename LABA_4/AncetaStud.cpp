@@ -173,7 +173,7 @@ int AncetaStud::getkolstud() //Получение значений переменной kolstud
     return kolstud;
 }; 
 
-int AncetaStud::kolstud = 0; //Инициализация статического поля kolstud
+int AncetaStud::kolstud = 0; //Инициализация статического поля kolstud количество студентов должно быть равно 0
 
 void AncetaStud::inputstud() //Блок - ввод данных о студентах
 {   //gets_s(a//Тут this уже определенен//->fio);
