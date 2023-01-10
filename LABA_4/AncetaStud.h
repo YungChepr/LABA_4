@@ -69,7 +69,11 @@ public:
     void setnomerStud(int nomerStud); //Установка значений переменной nomerStud
     void setreiting(int reiting); //Установка значений переменной reiting
     void settype(typchik type); //Установка значений переменной type
-    void setuch(AncetaStud uch); //Установка значений переменной uch */
+    void inputuch(AncetaStud uch); //Ввод значений переменной uch */
+    void setuch1(AncetaStud uch , int razmer, char dopstependia[N]); //Установка значений переменной uch
+    void setuch2(AncetaStud uch, int razmer, char stependia[N]); //Установка значений переменной uch
+    void setuch3(AncetaStud uch,char stependia[N]); //Установка значений переменной uch
+    void setuch4(AncetaStud uch,char adres[N], char telephone[N]); //Установка значений переменной uch
     static void setkolstud(int kolstud); //Установка значений переменной kolstud
 
     char* getfio(); //Получение значений переменной fio
