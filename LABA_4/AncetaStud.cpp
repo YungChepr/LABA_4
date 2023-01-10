@@ -9,7 +9,7 @@ AncetaStud::AncetaStud() //Конструктор без параметров
     reiting = 0;
     type = typchik::DVO;
     uch.dvo = *(new dvoechnik);
-    kolstud = kolstud + 1;
+    //setkolstud(getkolstud() + 1);
 
     //this->nomerGrup=0;
 };
@@ -22,7 +22,7 @@ AncetaStud::AncetaStud(typchik t) //Конструктор с одним параметром
     reiting = 0;
     type = t;
     uch.dvo = *(new dvoechnik);
-    kolstud = kolstud + 1;
+    //kolstud = kolstud + 1;
 
 };
 
@@ -34,13 +34,13 @@ AncetaStud::AncetaStud(char f[N], int nomerG, int nomerS, int r, typchik t) //Ко
     reiting = r;
     type = t;
     uch.dvo = *(new dvoechnik);
-    kolstud = kolstud + 1;
+    //kolstud = kolstud + 1;
 
 };
 
 AncetaStud::~AncetaStud() //Деструктор для уменьшения значения статического поля kolstud
 {
-    kolstud = kolstud - 1;
+    //kolstud = kolstud - 1;
 }
 
 void AncetaStud::setfio(char fio[N]) //Установка значений переменной fio
@@ -225,6 +225,7 @@ void AncetaStud::inputstud() //Блок - ввод данных о студентах
 
     AncetaStud uch;
     setuch(uch);
+    setkolstud(getkolstud() + 1); //Увеличиваем счетчик студентов на 1
     printf("\n");
     while (getchar() != '\n');
 }
@@ -287,6 +288,150 @@ void AncetaStud::outputstud() //Блок - вывод данных о студентах
     }
     printf("\n");
 }
+
+void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о студенте
+{
+    int f1 = 0;
+    int i;
+
+    char fio[N];
+    int nomerGrup;
+    int nomerStud;
+    int reiting;
+    typchik type;
+
+    int nomer,
+        nomerstudaka;
+    char imya[N];
+
+    printf("Введите имя студента которого хотите удалить\n");
+    gets_s(imya);
+
+    for (i = 0; i < N; i++)  //блок проверки запросов
+    {
+        if (spisokstud[i] != NULL)
+        {
+            (*spisokstud[i]).getfio(fio);
+            if (strcmp(imya, fio) == 0)
+            {
+                nomerGrup = (*spisokstud[i]).getnomerGrup();
+                nomerStud = (*spisokstud[i]).getnomerStud();
+                reiting = (*spisokstud[i]).getreiting();
+                type = (*spisokstud[i]).gettype();
+                printf(" %s ", fio);
+                printf(" %d ", nomerGrup);
+                printf(" %d ", nomerStud);
+                printf(" %d ", reiting);
+                if (type == OTL)
+                {
+                    char dopstependia[N];
+                    int razmer1;
+
+                    razmer1 = (*spisokstud[i]).getuch1(dopstependia);
+                    printf(" %s ", dopstependia);
+                    printf(" %d ", razmer1);
+                }
+                if (type == HOR)
+                {
+                    char stependia[N];
+                    int razmer2;
+
+                    razmer2 = (*spisokstud[i]).getuch2(stependia);
+                    printf(" %s ", stependia);
+                    printf(" %d ", razmer2);
+                }
+                if (type == TRO)
+                {
+                    char stependia[N];
+
+                    (*spisokstud[i]).getuch3(stependia);
+                    printf(" %s ", stependia);
+
+                }
+                if (type == DVO)
+                {
+                    char adres[N];
+                    char telephone[N];
+
+                    (*spisokstud[i]).getuch4(adres, telephone);
+                    printf(" %s ", adres);
+                    printf(" %s ", telephone);
+
+                }
+                f1 = f1 + 1;
+                nomer = i;
+                printf("\n");
+            }
+            if (f1 > 1)
+            {
+                printf("По вашему запросу нашлось больше одного студента\n");
+                printf("Введите номер студенческого студента которого хотите удалить\n");
+                do {
+                    printf(" Номер студенческого(Введите в формате 7 цифр '2111851')\n");
+                    while (scanf("%d", &nomerstudaka) != 1) //Проверка ввода если пользователь введет не цифру
+                    {
+                        while (getchar() != '\n');
+                        printf("Ошибка. Введите число как показано в примере: ");
+                    }
+                } while (nomerstudaka < 1000000 || nomerstudaka >9999999);
+
+                if (nomerstudaka == nomerStud)
+                {
+                    (*spisokstud[i]).getfio(fio);
+                    nomerGrup = (*spisokstud[i]).getnomerGrup();
+                    nomerStud = (*spisokstud[i]).getnomerStud();
+                    type = (*spisokstud[i]).gettype();
+                    printf(" %s ", fio);
+                    printf(" %d ", nomerGrup);
+                    printf(" %d ", nomerStud);
+                    printf(" %d ", reiting);
+                    if (type == OTL)
+                    {
+                        char dopstependia[N];
+                        int razmer1;
+
+                        razmer1 = (*spisokstud[i]).getuch1(dopstependia);
+                        printf(" %s ", dopstependia);
+                        printf(" %d ", razmer1);
+                    }
+                    if (type == HOR)
+                    {
+                        char stependia[N];
+                        int razmer2;
+
+                        razmer2 = (*spisokstud[i]).getuch2(stependia);
+                        printf(" %s ", stependia);
+                        printf(" %d ", razmer2);
+                    }
+                    if (type == TRO)
+                    {
+                        char stependia[N];
+
+                        (*spisokstud[i]).getuch3(stependia);
+                        printf(" %s ", stependia);
+
+                    }
+                    if (type == DVO)
+                    {
+                        char adres[N];
+                        char telephone[N];
+
+                        (*spisokstud[i]).getuch4(adres, telephone);
+                        printf(" %s ", adres);
+                        printf(" %s ", telephone);
+
+                    }
+                    nomer = i;
+                }
+            }
+        }
+        if (f1 == 0)
+        {
+            printf("\n По вашему запросу ничего не найдено\n ");
+        }
+    }
+}
+
 
 int searchbynamestud(AncetaStud* spisokstud[N], char  c[N]) //Блок - поиск по имени среди студентов
 {   // функция возращает количество найденных совпадений

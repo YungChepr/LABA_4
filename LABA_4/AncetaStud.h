@@ -84,9 +84,11 @@ public:
     void getuch4(char adres[N], char telephone[N]); //Получение значений переменной uch */
     static int getkolstud(); //Получение значений переменной kolstud
 
-    void inputstud(); //Блок - ввод данных о студентах
+    void inputstud();  //Блок - ввод данных о студентах
     void outputstud(); //Блок - вывод данных о студентах
+    void deletestud(AncetaStud* spisokstud[N]); //Блок - удаления данных о студенте
 
 };
 int searchbynamestud(AncetaStud* spisokstud[N], char с[N]);
 int searchbyreiting(AncetaStud* spisokstud[N], int d);
+
