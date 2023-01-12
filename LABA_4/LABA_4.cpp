@@ -143,15 +143,7 @@ int main()
         
         if (a == 9)
         {
-            
-            if (AncetaStud::getkolstud() != 0)
-            {
-                printf("Количество студентов = %d \n", AncetaStud::getkolstud());
-            }
-            else
-            {
-                printf("Сначала введите данные хотя бы об одном студенте\n");
-            }
+                printf("Количество студентов = %d \n", AncetaStud::getkolstud()); 
         }
     } while (a != 10);
     printf("\nВы вышли из системы\n");
