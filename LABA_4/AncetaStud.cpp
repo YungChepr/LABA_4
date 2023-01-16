@@ -46,23 +46,23 @@ AncetaStud::AncetaStud(char f[N], int nomerG, int nomerS, int r, typchik t) //Ко
 
 AncetaStud::~AncetaStud() //Деструктор 
 {
-  /*  if (type == OTL) //Проверка какой тип объекта был создан и удаление старого объекта
+  /*if (type == OTL) //Проверка какой тип объекта был создан и удаление старого объекта
     {
-        delete& (uch.otl);
+        delete &AncetaStud::uch.otl;
     }
     if (type == HOR)
     {
-        delete& (uch.hor);
+        delete &AncetaStud::uch.hor;
     }
     if (type == TRO)
     {
-        delete& (uch.tro);
+        delete &AncetaStud::uch.tro;
     }
     if (type == DVO)
     {
-        delete& (uch.dvo);
-    } */
-}
+        delete &AncetaStud::uch.dvo;
+    }*/ 
+ }
 
 void AncetaStud::setfio(char fio[N]) //Установка значений переменной fio
 {
@@ -499,7 +499,7 @@ int searchbynamestud(AncetaStud* spisokstud[N], char  c[N]) //Блок - поиск по им
     int reiting;
     typchik type;
 
-    for (i = 0; i < N; i++)  //блок проверки запросов
+    for (i = 0; i < AncetaStud::kolstud; i++)  //блок проверки запросов
     {
         if (spisokstud[i] != NULL)
         {
@@ -572,7 +572,7 @@ int searchbyreiting(AncetaStud* spisokstud[N], int d) //Блок - поиск по рейтингу
     int nomerStud;
     int reiting;
     typchik type;
-    for (i = 0; i < N; i++)  //блок проверки запросов
+    for (i = 0; i < AncetaStud::kolstud; i++)  //блок проверки запросов
     {
         if (spisokstud[i] != NULL)
         {

@@ -92,7 +92,9 @@ public:
     void outputstud(); //Блок - вывод данных о студентах
     void deletestud(AncetaStud* spisokstud[N]); //Блок - удаления данных о студенте
 
+    //Блок дружественных функций
+    friend int searchbynamestud(AncetaStud* spisokstud[N], char с[N]);
+    friend int searchbyreiting(AncetaStud* spisokstud[N], int d);
 };
-int searchbynamestud(AncetaStud* spisokstud[N], char с[N]);
-int searchbyreiting(AncetaStud* spisokstud[N], int d);
+
 
