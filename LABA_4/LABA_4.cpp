@@ -8,9 +8,8 @@ int main()
     setlocale(LC_ALL, "RUS");
     int a, //Переменная отвечающая за выбор строчки в меню
         i;//Индекс массива студентов
-   
-
-    AncetaStud* spisokstud = new AncetaStud[N];
+    
+    spisokstud = new AncetaStud[N];
     AncetaStud* spisokstud1[N]; //Указатель на массив в котором будут хранится указатели на объекты студентов
     for (i = 0; i < N; i++)
     {
@@ -20,10 +19,11 @@ int main()
     do {
         do {
             printf("\nВыберите действие в меню\n");
-            printf(" 1 - Ввод данных о студентах\n");
-            printf(" 2 - Удаление данных о студенте\n");
+            printf(" 1 - Ввод данных о студентах (функция)\n");
+            printf(" 2 - Удаление данных о студенте (функция)\n");
             printf(" 3 - Вывод данных о студентах\n");
-            printf(" 5 - Поиск по имени среди студентов\n");
+            printf(" 4 - Ввод данных о студентах (оператор)\n");
+            printf(" 6 - Поиск по имени среди студентов\n");
             printf(" 7 - Поиск по рейтингу среди cтудентов\n");
             printf(" 9 - Узнать количество студентов\n");
             printf(" 10 - Выход из системы\n");
@@ -36,7 +36,7 @@ int main()
 
         if (a == 1)
         {
-            printf("Ввод данных о студентах\n");
+            printf("Ввод данных о студентах(функция)\n");
             int n;
             do {
                 printf("\n Введите количество студентов n (n<%d): ",N);
@@ -65,7 +65,7 @@ int main()
 
         if (a == 2)
         {
-            printf("Удаление данных о студенте\n");
+            printf("Удаление данных о студенте(функция)\n");
             if (AncetaStud::getkolstud() != 0)
             {
                 spisokstud[0].deletestud(spisokstud1);
@@ -92,7 +92,28 @@ int main()
             }
         }
 
+        if (a == 4)
+        {
+                //printf("Студент %d \n", (AncetaStud::getkolstud() + 1));
+                //while (getchar() != '\n');
+                +spisokstud[AncetaStud::getkolstud()];
+            
+        }
+
         if (a == 5)
+        {
+            printf("Удаление данных о студенте(оператор)\n");
+            if (AncetaStud::getkolstud() != 0)
+            {
+                
+            }
+            else
+            {
+                printf("Сначала введите данные хотя бы об одном студенте\n");
+            }
+        }
+
+        if (a == 6)
         {
 
             int f3 = 0;

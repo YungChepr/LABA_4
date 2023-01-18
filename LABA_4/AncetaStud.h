@@ -96,5 +96,10 @@ public:
     friend int searchbynamestud(AncetaStud* spisokstud[N], char с[N]);
     friend int searchbyreiting(AncetaStud* spisokstud[N], int d);
 };
+    //Блок перегрузки операторов
+AncetaStud operator++(AncetaStud &x,int unused); //Этот оператор прибавляет один объект
+AncetaStud operator+(AncetaStud &x); //Этот оператор прибавляет несколько объектов
+extern AncetaStud* spisokstud; //Указатель на массив объектов типа AncetaStud ЧТОБЫ ВИДЕЛ ГЛОБАЛЬНУЮ ДОБАВЛЯЕМ EXTERN
+
 
 

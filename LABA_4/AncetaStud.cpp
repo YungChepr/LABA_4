@@ -1,6 +1,7 @@
 #define _CRT_SECURE_NO_WARNINGS
 #include "AncetaStud.h"
 
+
 AncetaStud::AncetaStud() //Конструктор без параметров
 {
     strcpy(fio, "");
@@ -636,3 +637,80 @@ int searchbyreiting(AncetaStud* spisokstud[N], int d) //Блок - поиск по рейтингу
 
     return f2;
 }
+
+AncetaStud operator++(AncetaStud& x, int unused) //Этот оператор прибавляет один объект
+{
+    printf(" ФИО: ");
+    char fio[N];
+    gets_s(fio);
+    x.setfio(fio);
+
+    int nomerGrup;
+    do {
+        printf(" Номер группы:(Введите в формате 5 цифр '22091')\n");
+        while (scanf("%d", &nomerGrup) != 1) //Проверка ввода если пользователь введет не цифру
+        {
+            while (getchar() != '\n');
+            printf("Ошибка. Введите число от как показано в примере : ");
+        }
+    } while (nomerGrup < 10000 || nomerGrup >99999);
+    x.setnomerGrup(nomerGrup);
+
+    int nomerStud;
+    do {
+        printf(" Номер студенческого(Введите в формате 7 цифр '2111851')\n");
+        while (scanf("%d", &nomerStud) != 1) //Проверка ввода если пользователь введет не цифру
+        {
+            while (getchar() != '\n');
+            printf("Ошибка. Введите число как показано в примере: ");
+        }
+    } while (nomerStud < 1000000 || nomerStud >9999999);
+    x.setnomerStud(nomerStud);
+
+    int reiting;
+    do {
+        printf(" Рейтинг студента:(от 0 до 100) ");
+        while (scanf("%d", &reiting) != 1) //Проверка ввода если пользователь  введет не цифру
+        {
+            while (getchar() != '\n');
+            printf("Ошибка. Введите число как показано в примере: ");
+        }
+    } while ((reiting < 0) || (reiting > 100));
+    x.setreiting(reiting);
+
+    x.inputuch();
+    x.setkolstud(x.getkolstud() + 1); //Увеличиваем счетчик студентов на 1
+    printf("\n");
+    while (getchar() != '\n');
+    return x;
+}
+
+AncetaStud operator+(AncetaStud& x) //Этот оператор прибавляет несколько объектов
+{
+    printf("Ввод данных о студентах(оператор)\n");
+    int n,i;
+    do {
+        printf("\n Введите количество студентов n (n<%d): ", N);
+        while (scanf("%d", &n) != 1) //Проверка ввода если пользователь введет введет не цифру
+        {
+            while (getchar() != '\n');
+            printf("Ошибка. Введите число от как показано в примере : ");
+        }
+        while (getchar() != '\n');
+    } while (n < 1 || n > N);
+
+    for (i = 0; i < n; i++)
+    {
+        if (AncetaStud::getkolstud() < N) {
+            printf("Студент %d \n", (AncetaStud::getkolstud() + 1));
+            spisokstud[AncetaStud::getkolstud()]++;
+        }
+        else
+        {
+            printf("Количество студентов не может быть больше %d\n", N);
+            i = n;
+        }
+    }
+    return x;
+}
+AncetaStud* spisokstud = NULL;
