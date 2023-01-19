@@ -4,7 +4,7 @@
 
 AncetaStud::AncetaStud() //Конструктор без параметров
 {
-    strcpy(fio, "");
+    fio = "";
     nomerGrup = 0;
     nomerStud = 0;
     reiting = 0;
@@ -19,7 +19,7 @@ AncetaStud::AncetaStud() //Конструктор без параметров
 
 AncetaStud::AncetaStud(typchik t) //Конструктор с одним параметром
 {
-    strcpy(fio, "");
+    fio = "";
     nomerGrup = 0;
     nomerStud = 0;
     reiting = 0;
@@ -31,9 +31,9 @@ AncetaStud::AncetaStud(typchik t) //Конструктор с одним параметром
 
 };
 
-AncetaStud::AncetaStud(char f[N], int nomerG, int nomerS, int r, typchik t) //Конструктор со всеми параметрами
+AncetaStud::AncetaStud(string f, int nomerG, int nomerS, int r, typchik t) //Конструктор со всеми параметрами
 {
-    strcpy(fio, f);
+    fio = f;
     nomerGrup = nomerG;
     nomerStud = nomerS;
     reiting = r;
@@ -65,20 +65,22 @@ AncetaStud::~AncetaStud() //Деструктор
     }*/ 
  }
 
-void AncetaStud::setfio(char fio[N]) //Установка значений переменной fio
+void AncetaStud::setfio(string fio) //Установка значений переменной fio
 {
-    strcpy(this->fio, fio);
+    //strcpy(this->fio, fio);
+    this->fio = fio;
 };
 
-char* AncetaStud::getfio() //Получение значений переменной fio 1
+/*char* AncetaStud::getfio() //Получение значений переменной fio 1
 {
     return fio;
-};
+}; */
 
-void AncetaStud::getfio(char fio[N]) //Получение значений переменной fio 2
+string AncetaStud::getfio() //Получение значений переменной fio 2
 //Обязательным условием является выделение области памяти под этот указатель
 {
-    strcpy(fio, this->fio);
+    //strcpy(fio, this->fio);
+    return this->fio;
     //непонятно что передали
     //char fio[30] только константу подставить
 };
@@ -169,7 +171,7 @@ void AncetaStud::inputuch() //Установка значений переменной uch
                 type = typchik::TRO;
                 //uch.tro = *(new troechnik);
 
-                strcpy(this->uch.hor.stependia, "Студент НЕ получает степендию");
+                strcpy(this->uch.tro.stependia, "Студент НЕ получает степендию");
             }
             else
             {
@@ -254,8 +256,9 @@ int AncetaStud::kolstud = 0; //Инициализация статического поля kolstud количеств
 void AncetaStud::inputstud() //Блок - ввод данных о студентах
 {   //gets_s(a//Тут this уже определенен//->fio);
     printf(" ФИО: ");
-    char fio[N];
-    gets_s(fio);
+    string fio;
+    std::cin >> fio;
+    //gets_s(fio);
     setfio(fio);
 
     int nomerGrup;
@@ -299,9 +302,10 @@ void AncetaStud::inputstud() //Блок - ввод данных о студентах
 
 void AncetaStud::outputstud() //Блок - вывод данных о студентах
 {
-    char fio[N];
-    getfio(fio);
-    printf(" %s ", fio);
+    string fio;
+    fio = getfio();
+    std::cout << fio ;
+    //printf(" %s ", fio);
 
     int nomerGrup;
     nomerGrup = getnomerGrup();
@@ -361,7 +365,7 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
     int f1 = 0;
     int i;
 
-    char fio[N];
+    string fio;
     int nomerGrup;
     int nomerStud;
     int reiting;
@@ -369,7 +373,7 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
 
     int nomer = -1,
         nomerstudaka;
-    char imya[N];
+    string imya;
 
     char dopstependia[N];
     int razmer;
@@ -378,18 +382,20 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
     char telephone[N];
     while (getchar() != '\n');
     printf("Введите имя студента которого хотите удалить\n");
-    gets_s(imya);
+    std::cin >> imya;
+    //gets_s(imya);
 
     for (i = 0; i < AncetaStud::getkolstud(); i++)  //блок проверки запросов
     {
         if (spisokstud[i] != NULL)
         {
-            (*spisokstud[i]).getfio(fio);
-            if (strcmp(imya, fio) == 0)
+            fio = (*spisokstud[i]).getfio();
+            if (imya == fio)
             {
                 
                 nomerStud = (*spisokstud[i]).getnomerStud();
-                printf(" %s ", fio);
+                std::cout << fio ;
+                //printf(" %s ", fio);
                 printf(" %d ", nomerStud);
                 f1 = f1 + 1;
                 nomer = i;
@@ -424,8 +430,9 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
                 if (nomerstudaka == (*spisokstud[i]).getnomerStud())
                 {
                     printf(" Вы удаляете такого студента: ");
-                    (*spisokstud[i]).getfio(fio);
-                    printf(" %s ", fio);
+                    fio = (*spisokstud[i]).getfio();
+                    std::cout << fio;
+                    //printf(" %s ", fio);
                     nomerStud = (*spisokstud[i]).getnomerStud();
                     printf(" %d ", nomerStud);
                     nomer = i;
@@ -442,7 +449,7 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
         //Установка в i объект значений i+1 объекта
         for (i = nomer; i < (AncetaStud::getkolstud()-1); i++)  //Сохранение значений следующего объекта
         {
-            (*spisokstud[i + 1]).getfio(fio);
+            fio = (*spisokstud[i + 1]).getfio();
             (*spisokstud[i]).setfio(fio);
 
             (*spisokstud[i]).setnomerGrup((*spisokstud[i + 1]).getnomerGrup());
@@ -491,12 +498,12 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
 }
 
 
-int searchbynamestud(AncetaStud* spisokstud[N], char  c[N]) //Блок - поиск по имени среди студентов
+int searchbynamestud(AncetaStud* spisokstud[N], string  c) //Блок - поиск по имени среди студентов
 {   // функция возращает количество найденных совпадений
     int f1 = 0;
     int i;
 
-    char fio[N];
+    string fio;
     int nomerGrup;
     int nomerStud;
     int reiting;
@@ -506,14 +513,15 @@ int searchbynamestud(AncetaStud* spisokstud[N], char  c[N]) //Блок - поиск по им
     {
         if (spisokstud[i] != NULL)
         {
-            (*spisokstud[i]).getfio(fio);
-            if (strcmp(c, fio) == 0)
+            fio = (*spisokstud[i]).getfio();
+            if (c == fio)
             {
                 nomerGrup = (*spisokstud[i]).getnomerGrup();
                 nomerStud = (*spisokstud[i]).getnomerStud();
                 reiting = (*spisokstud[i]).getreiting();
                 type = (*spisokstud[i]).gettype();
-                printf(" %s ", fio);
+                std::cout << fio;
+                //printf(" %s ", fio);
                 printf(" %d ", nomerGrup);
                 printf(" %d ", nomerStud);
                 printf(" %d ", reiting);
@@ -570,7 +578,7 @@ int searchbyreiting(AncetaStud* spisokstud[N], int d) //Блок - поиск по рейтингу
 {   // функция возращает количество найденных совпадений
     int f2 = 0;
     int i;
-    char fio[N];
+    string fio;
     int nomerGrup;
     int nomerStud;
     int reiting;
@@ -582,11 +590,12 @@ int searchbyreiting(AncetaStud* spisokstud[N], int d) //Блок - поиск по рейтингу
             reiting = (*spisokstud[i]).getreiting();
             if (d == reiting)
             {
-                (*spisokstud[i]).getfio(fio);
+                fio = (*spisokstud[i]).getfio();
                 nomerGrup = (*spisokstud[i]).getnomerGrup();
                 nomerStud = (*spisokstud[i]).getnomerStud();
                 type = (*spisokstud[i]).gettype();
-                printf(" %s ", fio);
+                std::cout << fio;
+                //printf(" %s ", fio);
                 printf(" %d ", nomerGrup);
                 printf(" %d ", nomerStud);
                 printf(" %d ", reiting);
@@ -643,8 +652,9 @@ int searchbyreiting(AncetaStud* spisokstud[N], int d) //Блок - поиск по рейтингу
 AncetaStud operator++(AncetaStud& x, int unused) //Этот оператор прибавляет один объект
 {
     printf(" ФИО: ");
-    char fio[N];
-    gets_s(fio);
+    string fio;
+    std::cin >> fio;
+    //gets_s(fio);
     x.setfio(fio);
 
     int nomerGrup;

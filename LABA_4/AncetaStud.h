@@ -6,6 +6,8 @@
 #include <clocale>
 #include <string.h>
 #include <locale.h>
+#include <string>
+using std::string;
 //Константа хранит количество элементов массива преподователей
 const int N = 30;
 class otlichnik    //Структура хранит данные для студента отличника
@@ -45,7 +47,7 @@ enum typchik
 class AncetaStud
 {
 private:
-    char fio[30];  //Переменная хранит имя студнта
+    string fio;  //Переменная хранит имя студнта
     int nomerGrup; //Переменная хранит номер группы студнта
     int nomerStud; //Переменная хранит номер студенческого студнта
     int reiting;   //Переменная хранит рейтинг студнта
@@ -61,10 +63,10 @@ private:
 public:
     AncetaStud(); //Конструктор без параметров
     AncetaStud(typchik type); //Конструктор с одним параметром
-    AncetaStud(char fio[N], int nomerGrup, int nomerStud, int reiting, typchik type); //Конструктор со всеми параметрами
+    AncetaStud(string fio, int nomerGrup, int nomerStud, int reiting, typchik type); //Конструктор со всеми параметрами
     ~AncetaStud(); //Деструктор для уменьшения значения статического поля kolstud
 
-    void setfio(char fio[N]); //Установка значений переменной fio
+    void setfio(string fio); //Установка значений переменной fio
     void setnomerGrup(int nomerGrup); //Установка значений переменной nomerGrup
     void setnomerStud(int nomerStud); //Установка значений переменной nomerStud
     void setreiting(int reiting); //Установка значений переменной reiting
@@ -76,8 +78,8 @@ public:
     void setuch4(char adres[N], char telephone[N]); //Установка значений переменной uch
     static void setkolstud(int kolstud); //Установка значений переменной kolstud
 
-    char* getfio(); //Получение значений переменной fio
-    void getfio(char fio[N]); //Получение значений переменной fio
+    //char* getfio(); //Получение значений переменной fio
+    string getfio(); //Получение значений переменной fio
     int getnomerGrup(); //Получение значений переменной nomerGrup
     int getnomerStud(); //Получение значений переменной nomerStud
     int getreiting(); //Получение значений переменной reiting
@@ -93,7 +95,7 @@ public:
     void deletestud(AncetaStud* spisokstud[N]); //Блок - удаления данных о студенте
 
     //Блок дружественных функций
-    friend int searchbynamestud(AncetaStud* spisokstud[N], char с[N]);
+    friend int searchbynamestud(AncetaStud* spisokstud[N], string с);
     friend int searchbyreiting(AncetaStud* spisokstud[N], int d);
 };
     //Блок перегрузки операторов
