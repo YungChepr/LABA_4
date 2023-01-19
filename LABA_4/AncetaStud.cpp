@@ -367,7 +367,7 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
     int reiting;
     typchik type;
 
-    int nomer,
+    int nomer = -1,
         nomerstudaka;
     char imya[N];
 
@@ -401,6 +401,7 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
     if (f1 == 0)
     {
         printf("\n По вашему запросу ничего не найдено\n ");
+        nomer = -1;
     }
 
     if (f1 > 1)
@@ -439,7 +440,7 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
     {
         //Перезапись студентов на один номер меньше
         //Установка в i объект значений i+1 объекта
-        for (i = nomer; i < AncetaStud::getkolstud(); i++)  //Сохранение значений следующего объекта
+        for (i = nomer; i < (AncetaStud::getkolstud()-1); i++)  //Сохранение значений следующего объекта
         {
             (*spisokstud[i + 1]).getfio(fio);
             (*spisokstud[i]).setfio(fio);
@@ -477,13 +478,14 @@ void AncetaStud::deletestud(AncetaStud* spisokstud[N])//Блок - удаления данных о
             
         }
         // Инициализирую последний объект
-        (*spisokstud[AncetaStud::getkolstud()]).AncetaStud::~AncetaStud();
-        (*spisokstud[AncetaStud::getkolstud()]).AncetaStud::AncetaStud();
+        (*spisokstud[AncetaStud::getkolstud()-1]).AncetaStud::~AncetaStud();
+        (*spisokstud[AncetaStud::getkolstud()-1]).AncetaStud::AncetaStud();
         setkolstud(getkolstud() - 1); //Уменьшаем счетчик студентов на 1
     }
     else
     {
         printf("\n По вашему новому запросу ничего не найдено\n ");
+        nomer = -1;
     }
     
 }
@@ -712,5 +714,19 @@ AncetaStud operator+(AncetaStud& x) //Этот оператор прибавляет несколько объекто
         }
     }
     return x;
+}
+
+AncetaStud operator++(AncetaStud& x) //Этот оператор прибавляет один объект
+{
+    AncetaStud* spisokstud1[N]; //Указатель на массив в котором будут хранится указатели на объекты студентов
+    int i;
+    for (i = 0; i < N; i++)
+    {
+        spisokstud1[i] = &(spisokstud[i]);
+    }
+
+   x.deletestud(spisokstud1);
+
+   return x;
 }
 AncetaStud* spisokstud = NULL;

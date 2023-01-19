@@ -98,6 +98,7 @@ public:
 };
     //Блок перегрузки операторов
 AncetaStud operator++(AncetaStud &x,int unused); //Этот оператор прибавляет один объект
+AncetaStud operator++(AncetaStud& x); //Этот оператор удаляет один объект
 AncetaStud operator+(AncetaStud &x); //Этот оператор прибавляет несколько объектов
 extern AncetaStud* spisokstud; //Указатель на массив объектов типа AncetaStud ЧТОБЫ ВИДЕЛ ГЛОБАЛЬНУЮ ДОБАВЛЯЕМ EXTERN
 

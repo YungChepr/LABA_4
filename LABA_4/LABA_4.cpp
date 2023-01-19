@@ -23,6 +23,7 @@ int main()
             printf(" 2 - Удаление данных о студенте (функция)\n");
             printf(" 3 - Вывод данных о студентах\n");
             printf(" 4 - Ввод данных о студентах (оператор)\n");
+            printf(" 5 - Удаление данных о студенте (оператор)\n");
             printf(" 6 - Поиск по имени среди студентов\n");
             printf(" 7 - Поиск по рейтингу среди cтудентов\n");
             printf(" 9 - Узнать количество студентов\n");
@@ -96,7 +97,7 @@ int main()
         {
                 //printf("Студент %d \n", (AncetaStud::getkolstud() + 1));
                 //while (getchar() != '\n');
-                +spisokstud[AncetaStud::getkolstud()];
+                +spisokstud[AncetaStud::getkolstud()-1];
             
         }
 
@@ -105,7 +106,7 @@ int main()
             printf("Удаление данных о студенте(оператор)\n");
             if (AncetaStud::getkolstud() != 0)
             {
-                
+                ++spisokstud[AncetaStud::getkolstud()-1];
             }
             else
             {
